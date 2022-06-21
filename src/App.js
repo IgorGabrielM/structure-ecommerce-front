@@ -1,19 +1,51 @@
+import React, { useState } from 'react'
+//import { useSelector } from 'react-redux'
 import './App.css';
 import Header from './Header';
-import { Routes, Outlet, Route } from 'react-router';
-import ProdutoForm from './ProdutoForm';
-import Produtos from './Produtos';
+import Login from './Login';
+import Checkout from './Checkout';
+import { Routes, Route, Outlet } from 'react-router'
+import ProductForm from './ProductForm';
+import Products from './Products';
 
 function App() {
+
+  const [token] = useState(null);
+
+  /*
+  const loggedIn = useSelector(state => state.loggedIn)
+
+          <Routes>
+  {loggedIn ?
+    <>
+      <Route path="/products" element={<Product />} />
+      <Route path="/create" element={<ProductForm />} />
+      <Route path="/checkout" element={<Checkout />} />
+    </>
+    :
+    <Route path='/*' element={<Login token={token} />} />
+  }
+</Routes>
+<Outlet />*/
+
   return (
-    <div className="container">
-      <Header />
-      <Routes>
-        <Route path="/produtos" element={<Produtos />} />
-        <Route path="/form" element={<ProdutoForm/>} />
-        <Route path="/form/:id" element={<ProdutoForm />} />
-      </Routes>
-      <Outlet />
+    <div>
+      <header>
+        <Header />
+      </header>
+      <main className="container">
+        <Routes>
+          <>
+            <Route path='/products' element={<Products />} />
+            <Route path="/create" element={<ProductForm />} />
+            <Route path="/checkout" element={<Checkout />} />
+          </>
+          <Route path='/*' element={<Login token={token} />} />
+
+        </Routes>
+        <Outlet />
+
+      </main>
     </div>
   );
 }

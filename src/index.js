@@ -3,16 +3,24 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {HashRouter} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { HashRouter } from 'react-router-dom';
 
-ReactDOM.render(
+import { Provider } from 'react-redux';
+import { createStore} from 'redux';
+import reducer from './reducer';
+
+const store = createStore(reducer)
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <Provider store={store} >
   <HashRouter>
   <React.StrictMode>
     <App />
   </React.StrictMode>
-  </HashRouter>,
-  document.getElementById('root')
+  </HashRouter>
+  </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function
