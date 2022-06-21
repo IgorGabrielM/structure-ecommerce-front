@@ -12,15 +12,15 @@ import reducer from './reducer';
 
 const store = createStore(reducer)
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
+ReactDOM.render(
   <Provider store={store} >
   <HashRouter>
   <React.StrictMode>
     <App />
   </React.StrictMode>
   </HashRouter>
-  </Provider>
+  </Provider>,
+  document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function
